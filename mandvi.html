@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Display Port Information</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.3/xlsx.full.min.js"></script>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+      .port-info {
+        background: #f9f9f9;
+        padding: 15px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        border: 1px solid black;
+      }
+      h2 {
+        color: #2c3e50;
+      }
+      p {
+        margin: 5px 0;
+      }
+      .dropdown-content {
+        display: none;
+        margin-top: 10px;
+        padding: 10px;
+        background-color: #f1f1f1;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+      .dropdown-content p {
+        margin: 5px 0;
+      }
+      .toggle-btn {
+        background-color: #3498db;
+        color: white;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 10px;
+      }
+      .toggle-btn:hover {
+        background-color: #2980b9;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Port Information</h1>
+    <div id="dataContainer"></div>
+
+    <script>
+      // Function to fetch and display Excel data
+      function loadExcelData(filePath) {
+        fetch(filePath)
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.arrayBuffer();
+          })
+          .then((data) => {
+            let workbook = XLSX.read(data, { type: "array" });
+            let sheetName = workbook.SheetNames[0]; // Read the first sheet
+            let sheet = workbook.Sheets[sheetName];
+            let jsonData = XLSX.utils.sheet_to_json(sheet); // Convert to JSON
+
+            let output = "";
+            jsonData.forEach((port, index) => {
+              output += `<div class="port-info">
+                            <h2>${port["Port name"] || "Unknown Port"}</h2>
+                            <p><strong>Group of Port:</strong> ${
+                              port["Group of Ports"] || "N/A"
+                            }</p>
+                            <p><strong>Port:</strong> ${
+                              port["Name of Port"] || "N/A"
+                            }</p>
+                            <p><strong>Jetty Type:</strong> ${
+                              port["Type of Jetty"] || "N/A"
+                            }</p>
+                            <p><strong>Jetty Name:</strong> ${
+                              port["Name of Jetty"] || "N/A"
+                            }</p>
+                            <p><strong>Owner:</strong> ${
+                              port["Port Owner (Government/Private)"] || "N/A"
+                            }</p>
+                            <p><strong>Cargo Handled:</strong> ${
+                              port["Name of Cargo Handeled Port"] || "N/A"
+                            }</p>
+                            <p><strong>Status:</strong> ${
+                              port["Operational/Non-Operational"] || "N/A"
+                            }</p>
+                            <p><strong>Max Draft:</strong> ${
+                              port["Maximum Permissible Draft"] || "N/A"
+                            }</p>
+                            <p><strong>Capacity(in MMTPA):</strong> ${
+                              port["Capacity (in MMTPA)"] || "N/A"
+                            }</p>
+                            <p><strong>Road Connectivity:</strong> ${
+                              port["Road Connectivity:"] || "N/A"
+                            }</p>
+                            <p><strong>Rail Connectivity:</strong> ${
+                              port["Rail Connectivity:"] || "N/A"
+                            }</p>
+                            <p><strong>Emergency Contact:</strong> ${
+                              port["Emergency Contact Details:"] || "N/A"
+                            }</p>
+
+
+
+                            <button class="toggle-btn" onclick="toggleDropdown(${index})">
+                              Show More Details
+                            </button>
+                            <div class="dropdown-content" id="dropdown-${index}">
+                              <p><strong>VHF Channels</strong> ${
+                                  (port["VHF Channels:"] || "N/A")
+                                  }</p>
+                              <p><strong>Anchorage Points:</strong> ${
+                                port["Anchorage Points:"] || "N/A"
+                              }</p>
+
+
+                              <p><strong>Strong:</strong> ${
+                              (port["Open storage Area:"] || "N/A") +
+                              " /" +
+                              (port["Covered Storage Facilities:"] || "N/A")+
+                              "/"+
+                              (port["Specialized Storage Facilities:"] || "N/A")
+                            }</p>
+                            </div>
+                          </div>`;
+            });
+
+            document.getElementById("dataContainer").innerHTML = output;
+          })
+          .catch((error) => {
+            console.error("Error loading Excel file:", error);
+          });
+      }
+
+      // Function to toggle dropdown visibility
+      function toggleDropdown(index) {
+        const dropdown = document.getElementById(`dropdown-${index}`);
+        if (dropdown.style.display === "none" || dropdown.style.display === "") {
+          dropdown.style.display = "block";
+        } else {
+          dropdown.style.display = "none";
+        }
+      }
+
+      // Specify the path to the Excel file
+      const filePath = "Mandvi.xlsx";
+      loadExcelData(filePath);
+    </script>
+  </body>
+</html>

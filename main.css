@@ -1,0 +1,70 @@
+/* Make individual port markers green */
+.individual-port-marker {
+    filter: hue-rotate(100deg) saturate(100%) brightness(75%);
+  }
+  
+  /* Optional: Style the search input and results */
+  .search-container {
+    padding: 5px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  .search-results {
+    padding: 0;
+    margin-top: 5px;
+    max-height: 200px;
+    overflow-y: auto;
+    background-color: #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .search-results li {
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  /* Popup styling */
+  .popup-container {
+    position: fixed;
+    top: 13%;
+    left: 2%;
+    width: 500px;
+    height: 80%;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+    overflow: hidden;
+    z-index: 1000;
+}
+
+.popup-header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.popup-content {
+    padding: 10px;
+}
+
+.popup-footer {
+    padding: 10px;
+    text-align: right;
+}
+
+.btn-close {
+    background-color: #f44336;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-close:hover {
+    background-color: #d32f2f;
+}
