@@ -1,3 +1,4 @@
+// pop window
 // Initialize the map and set the view to Gujarat
 const map = L.map("map").setView([22.2587, 71.1924], 7);
 
@@ -56,11 +57,10 @@ function addIndividualPortMarkers(ports) {
         direction: "top",
         offset: [0, -40],
       })
-      
        // Add click event to show popup when an individual port is clicked
-      //  marker.on("click", function () {
-      //   showPopup(port.name, port.info, port.detailsPage);
-    // });
+       marker.on("click", function () {
+        showPopup(port.name, port.info, port.detailsPage);
+    });
 });
 }
 
@@ -74,7 +74,6 @@ L.geoJSON(portsData, {
 
       // Fly to the clicked port's location
       if (coordinates) {
-        const adjustedLat = coordinates[1] - 0.3
         map.flyTo([coordinates[1], coordinates[0]], 10, { duration: 1.5 });
       }
 
@@ -143,13 +142,14 @@ document.getElementById("searchBox").addEventListener("input", function (e) {
 
     const matchingResults = [];
     portsData.features.forEach((feature) => {
-      const { name } = feature.properties;
+      const { name, info, detailsPage } = feature.properties;
 
       if (name.toLowerCase().includes(searchTerm)) {
         matchingResults.push({
           name,
           coordinates: feature.geometry.coordinates,
-          info: feature.properties.info,
+          info,
+          detailsPage,
           isGroup: true,
           group: feature,
         });
@@ -162,6 +162,7 @@ document.getElementById("searchBox").addEventListener("input", function (e) {
               name: port.name,
               coordinates: port.coordinates,
               info: port.info,
+              detailsPage: port.detailsPage,
               isGroup: false,
             });
           }
@@ -178,7 +179,6 @@ document.getElementById("searchBox").addEventListener("input", function (e) {
         listItem.textContent = result.name;
 
         listItem.addEventListener("click", function () {
-        
           map.flyTo([result.coordinates[1], result.coordinates[0]], result.isGroup ? 10 : 12, { duration: 1.5 });
 
           if (result.isGroup) {
@@ -195,7 +195,7 @@ document.getElementById("searchBox").addEventListener("input", function (e) {
             result.group.ports.forEach((port) => {
               const portMarker = L.marker([port.coordinates[1], port.coordinates[0]], {
                 icon: L.icon({
-                  iconUrl: "https://cdn-icons-png.flaticon.com/512/684/684908.png", // Marker icon
+                  iconUrl: "https://cdn-icons-png.flaticon.com/512/684/684908.png",
                   iconSize: [25, 41],
                   iconAnchor: [12, 41],
                   className: "individual-port-marker",
@@ -206,7 +206,7 @@ document.getElementById("searchBox").addEventListener("input", function (e) {
           } else {
             const portMarker = L.marker([result.coordinates[1], result.coordinates[0]], {
               icon: L.icon({
-                iconUrl: "https://cdn-icons-png.flaticon.com/512/684/684908.png", // Marker icon
+                iconUrl: "https://cdn-icons-png.flaticon.com/512/684/684908.png",
                 iconSize: [25, 41],
                 iconAnchor: [12, 41],
                 className: "individual-port-marker",
@@ -215,8 +215,8 @@ document.getElementById("searchBox").addEventListener("input", function (e) {
             highlightedMarkers.push(portMarker);
           }
 
-          // Show popup for the selected port
-          showPopup(result.name, result.info);
+          // Show popup for the selected port (same as when clicking a port)
+          showPopup(result.name, result.info, result.detailsPage);
 
           resultsList.style.display = "none";
         });

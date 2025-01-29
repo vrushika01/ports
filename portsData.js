@@ -43,27 +43,27 @@ const portsData = {
                     "coordinates": [70.45, 22.966667],
                     "detailsPage": "GMB Jetty.html"
                 }
-                //,
-                // {
-                //     "name": "Jaydeep",
-                //     "coordinates": [ , ],
-                //     "detailsPage": "Jaydeep.html"
-                // },
+                ,
+                {
+                    "name": "Jaydeep",
+                    "coordinates": [ 70.44406 , 22.95847],
+                    "detailsPage": "Jaydeep.html"
+                },
                 // {
                 //     "name": "Chaugule",
                 //     "coordinates": [ , ],
                 //     "detailsPage": "Chaugule.html"
                 // },
-                // {
-                //     "name": "United Shippers ltd.",
-                //     "coordinates": [ , ],
-                //     "detailsPage": "United Shippers ltd.html"
-                // },
-                // {
-                //     "name": "Shriji Shipping",
-                //     "coordinates": [ , ],
-                //     "detailsPage": "Shriji Shipping.html"
-                // }
+                {
+                    "name": "United Shippers ltd.",
+                    "coordinates": [ 70.08113 ,22.5465 ],
+                    "detailsPage": "United Shippers ltd.html"
+                },
+                {
+                    "name": "Shriji Shipping",
+                    "coordinates": [70.0757 ,22.48117 ],
+                    "detailsPage": "Shriji Shipping.html"
+                }
             ]
         },
         {
@@ -77,18 +77,18 @@ const portsData = {
                 "type": "Point",
                 "coordinates": [69.5887, 21.6241]
             },
-            // "ports": [
-            //     {
-            //         "name": "GMB Jetty",
-            //         "coordinates": [, ],
-            //         "detailsPage": "P.html"
-            //     },
-            //     {
-            //         "name": "SAURASTRA Cement Co.",
-            //         "coordinates": [, ],
-            //         "detailsPage": "SAURASTRA.html"
-            //     }
-            // ]
+            "ports": [
+                {
+                    "name": "GMB Jetty(Porbandar)",
+                    "coordinates": [69.58883018391032,21.638318843953012],
+                    "detailsPage": "P.html"
+                },
+                {
+                    "name": "SAURASTRA Cement Co.",
+                    "coordinates": [69.60159659084132 ,21.650448009436545],
+                    "detailsPage": "SAURASTRA.html"
+                }
+            ]
         },
         {
             "type": "Feature",
@@ -112,16 +112,16 @@ const portsData = {
                     "coordinates": [71.08, 20.74 ],
                     "detailsPage": "Navabandar.html"
                 },
-                // {
-                //     "name": "Kotda",
-                //     "coordinates": [80.326744, 13.252851 ],
-                //     "detailsPage": "kotda.html"
-                // },
-                // {
-                //     "name": "Madhvad",
-                //     "coordinates": [,],
-                //     "detailsPage": "madhvad.html"
-                // },
+                {
+                    "name": "Kotda",
+                    "coordinates": [70.8701419710241,20.723645198496428],
+                    "detailsPage": "kotda.html"
+                },
+                {
+                    "name": "Madhvad",
+                    "coordinates": [70.391505,20.894637],
+                    "detailsPage": "madhvad.html"
+                },
                 {
                     "name": "Mangrol",
                     "coordinates": [70.12, 21.12 ],
@@ -175,12 +175,12 @@ const portsData = {
                     "coordinates": [72.282922, 21.677171],
                     "detailsPage": "Ghogha.html"
                 }
-                //,
-                // {
-                //     "name": "Talaja",
-                //     "coordinates": [, ],
-                //     "detailsPage": "talaja.html"
-                // }
+                ,
+                {
+                    "name": "Talaja",
+                    "coordinates": [72.114063,21.315184],
+                    "detailsPage": "talaja.html"
+                }
             ]
         },
         {
@@ -195,21 +195,21 @@ const portsData = {
                 "coordinates": [72.7311, 21.14295]
             },
             "ports": [
-                // {
-                //     "name": "Magdalla port ",
-                //     "coordinates": [, ],
-                //     "detailsPage": "Magdalla port.html"
-                // },
+                {
+                    "name": "Magdalla port ",
+                    "coordinates": [72.75201746293834,21.156197409213593],
+                    "detailsPage": "Magdalla port.html"
+                },
                 {
                     "name": "HAZIRA ",
                     "coordinates": [72.6443, 21.0875],
                     "detailsPage": "HAZIRA.html"
                 },
-                // {
-                //     "name": "Umargaon",
-                //     "coordinates": [, ],
-                //     "detailsPage": "Umargaon.html"
-                // },
+                {
+                    "name": "Umargaon",
+                    "coordinates": [72.74751009962502,20.234150756067805],
+                    "detailsPage": "Umargaon.html"
+                },
                 {
                     "name": "Maroli",
                     "coordinates": [72.8899466, 21.0243434],
@@ -225,31 +225,31 @@ const portsData = {
                     "coordinates": [72.9539, 20.7669],
                     "detailsPage": "Bilimora.html"
                 },
-                // {
-                //     "name": "Onjal ",
-                //     "coordinates": [, ],
-                //     "detailsPage": "Onjal .html"
-                // },
+                {
+                    "name": "Onjal ",
+                    "coordinates": [72.8355744402216,20.437948144660943],
+                    "detailsPage": "Onjal .html"
+                },
                 {
                     "name": "Kolak",
                     "coordinates": [72.883, 20.483],
                     "detailsPage": "Kolak.html"
                 },
-                // {
-                //     "name": "Umarsadi",
-                //     "coordinates": [, ],
-                //     "detailsPage": "Umarsadi.html"
-                // },
+                {
+                    "name": "Umarsadi",
+                    "coordinates": [72.83282354919598,20.455346283469833],
+                    "detailsPage": "Umarsadi.html"
+                },
                 {
                     "name": "Vansi-Borsi",
                     "coordinates": [ 72.7705,20.9289 ],
                     "detailsPage": "Vansi-Borsi.html"
                 },
-                // {
-                //     "name": "Nargol",
-                //     "coordinates": [, ],
-                //     "detailsPage": "Nargol.html"
-                // }
+                {
+                    "name": "Nargol",
+                    "coordinates": [72.78338076548859,20.243565815607447],
+                    "detailsPage": "Nargol.html"
+                }
             ]
         },
         {
@@ -286,7 +286,7 @@ const portsData = {
             "properties": {
                 "name": "Bharuch Port group",
                 "info": "Dahej is a fair weather lighterage port located at the junction of Guljaria and Ban Creek, on the west coast of the country, at Gulf of Cambay.",
-                "detailsPage":"bharuch.html"
+                "detailsPage":"Dahej.html"
             },
             "geometry": {
                 "type": "Point",
@@ -297,21 +297,21 @@ const portsData = {
                     "coordinates": [72.56089, 21.65976],
                     "detailsPage": "RDMT Jetty.html"
                 },
-                // {
-                //     "name": "DHIL Jetty",
-                //     "coordinates": [72.315, 21.42 ],
-                //     "detailsPage": "DHIL Jetty.html"
-                // },
                 {
-                    "name": "Godrej Jetty",
-                    "coordinates": [72.9404, 19.0973],
-                    "detailsPage": "Godrej Jetty.html"
+                    "name": "DHIL Jetty",
+                    "coordinates": [72.684505,21.684835],
+                    "detailsPage": "DHIL Jetty.html"
                 },
                 // {
-                //     "name": "ISGECT Jetty",
-                //     "coordinates": [, ],
-                //     "detailsPage": "ISGECT Jetty.html"
+                //     "name": "Godrej Jetty",
+                //     "coordinates": [72.9404, 19.0973],
+                //     "detailsPage": "Godrej Jetty.html"
                 // },
+                {
+                    "name": "ISGECT Jetty",
+                    "coordinates": [72.591442,21.677741],
+                    "detailsPage": "ISGECT Jetty.html"
+                },
                 {
                     "name": "GCPTCL(Dahej)",
                     "coordinates": [72.53790, 21.69255],
@@ -322,12 +322,12 @@ const portsData = {
                     "coordinates": [72.536, 21.6746],
                     "detailsPage": "Petronet LNG (PLL).html"
                 }
-                // ,
-                // {
-                //     "name": "Adani Petronet Pvt Ltd.",
-                //     "coordinates": [, ],
-                //     "detailsPage": "Adani Petronet Pvt Ltd.html"
-                // }
+                ,
+                {
+                    "name": "Adani Petronet Pvt Ltd.",
+                    "coordinates": [72.53711747427097,21.689106167948733],
+                    "detailsPage": "Adani Petronet Pvt Ltd.html"
+                }
                 
             ]
         }

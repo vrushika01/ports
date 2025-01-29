@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Display Port Information</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.3/xlsx.full.min.js"></script>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+
+      .port-list {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .port-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px;
+        border-bottom: 1px solid #ccc;
+        cursor: pointer;
+        font-size: 18px;
+        font-weight: bold;
+      }
+
+      .port-item:hover {
+        background-color: #f1f1f1;
+      }
+
+      .port-details {
+        display: none;
+        padding: 10px;
+        background: #f9f9f9;
+        border-left: 4px solid #007bff;
+        margin-bottom: 10px;
+      }
+
+      .arrow {
+        font-size: 18px;
+        transition: transform 0.3s ease;
+      }
+
+      .expanded .arrow {
+        transform: rotate(90deg);
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Port Information</h1>
+    <ul id="dataContainer" class="port-list"></ul>
+
+    <script>
+      function loadExcelData(filePath) {
+        fetch(filePath)
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.arrayBuffer();
+          })
+          .then((data) => {
+            let workbook = XLSX.read(data, { type: "array" });
+            let sheetName = workbook.SheetNames[0];
+            let sheet = workbook.Sheets[sheetName];
+            let jsonData = XLSX.utils.sheet_to_json(sheet);
+
+            let output = "";
+            jsonData.forEach((port, index) => {
+              let portName = port["Name of Port"] || "Unknown Port";
+              output += `
+                <li class="port-item" onclick="toggleDetails(${index})">
+                  <span>${portName}</span>
+                  <span class="arrow">➤</span>
+                </li>
+                <div class="port-details" id="details-${index}">
+                  <h2>${port["Name of Port"] || "Unknown Port"}</h2>
+                                   <p><strong>Group of Port:</strong> ${
+                              port["Group of Ports"] || "N/A"
+                            }</p>
+                            <p><strong>Port:</strong> ${
+                              port["Name of Port"] || "N/A"
+                            }</p>
+                            <p><strong>Jetty Type:</strong> ${
+                              port["Type of Jetty"] || "N/A"
+                            }</p>
+                            <p><strong>Jetty Name:</strong> ${
+                              port["Name of Jetty"] || "N/A"
+                            }</p>
+                            <p><strong>Port Officer:</strong> ${
+                               "A.S.Shah"
+                            }</p>
+                            <p><strong>Owner:</strong> ${
+                              port["Port Owner (Government/Private)"] || "N/A"
+                            }</p>
+                            <p><strong>Cargo Handled:</strong> ${
+                              port["Name of Cargo Handeled Port"] || "N/A"
+                            }</p>
+                            <p><strong>Status:</strong> ${
+                              port["Operational/Non-Operational"] || "N/A"
+                            }</p>
+                            <p><strong>Name of Berths:</strong> ${
+                              port["Name of Berths/SBM/SPM:"] || "N/A"
+                            }</p>
+                            <p><strong>Types of Berths:</strong> ${
+                              port["Types of Berths/SBM/SPM:"] || "N/A"
+                            }</p>
+                            <p><strong>Max Draft:</strong> ${
+                              port["Maximum Permissible Draft"] || "N/A"
+                            }</p>
+                            <p><strong>Capacity(in MMTPA):</strong> ${
+                              port["Capacity (in MMTPA)"] || "N/A"
+                            }</p>
+                            <p><strong>Anchorage Points:</strong> ${
+                              port["Anchorage Points:"] || "N/A"
+                            }</p>
+                            <p><strong>Open storage Area:</strong> ${
+                              port["Open storage Area:"] || "N/A"
+                            }</p>
+                            <p><strong>Covered Storage Facilities:</strong> ${
+                              port["Covered Storage Facilities:"] || "N/A"
+                            }</p>
+                            <p><strong>Specialized Storage Facilities:</strong> ${
+                              port["Specialized Storage Facilities:"] || "N/A"
+                            }</p> 
+                            <p><strong>Road Connectivity:</strong> ${
+                              port["Road Connectivity:"] || "N/A"
+                            }</p>
+                            <p><strong>Rail Connectivity:</strong> ${
+                              port["Rail Connectivity:"] || "N/A"
+                            }</p>
+                             <p><strong>Port control centre Contact:</strong> ${
+                              port["Port Control Centre Contact:"] || "N/A"
+                            }</p>
+                            <p><strong>Emergency Contact:</strong> ${
+                              port["Emergency Contact Details:"] || "N/A"
+                            }</p>
+                </div>
+              `;
+            });
+
+            document.getElementById("dataContainer").innerHTML = output;
+          })
+          .catch((error) => {
+            console.error("Error loading Excel file:", error);
+          });
+      }
+
+      function toggleDetails(index) {
+        let details = document.getElementById(`details-${index}`);
+        let listItem = details.previousElementSibling;
+        let arrow = listItem.querySelector(".arrow");
+
+        if (details.style.display === "block") {
+          details.style.display = "none";
+          listItem.classList.remove("expanded");
+        } else {
+          details.style.display = "block";
+          listItem.classList.add("expanded");
+        }
+      }
+
+      const filePath = "Okha.xlsx";
+      loadExcelData(filePath);
+    </script>
+  </body>
+</html>
