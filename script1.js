@@ -1,4 +1,3 @@
-// pop window
 // Initialize the map and set the view to Gujarat
 const map = L.map("map").setView([22.2587, 71.1924], 7);
 
@@ -25,10 +24,8 @@ function showPopup(portName, portInfo, detailsPage) {
   popupContent.innerHTML = `
     <p><strong>Port Name:</strong> ${portName}</p>
     <p><strong>Details:</strong> ${portInfo}</p>
-    <a href="${detailsPage}" target="_blank" style="display:inline-block; margin-top:10px; text-decoration:none; color:blue;">
-  Know More
-</a>
-
+    <iframe src="${detailsPage}" style="width:100%; height:400px; border:none; margin-top:10px;"></iframe>
+    
   `;      
   popup.style.display = "block";
 }
@@ -59,10 +56,11 @@ function addIndividualPortMarkers(ports) {
         direction: "top",
         offset: [0, -40],
       })
+      
        // Add click event to show popup when an individual port is clicked
-       marker.on("click", function () {
-        showPopup(port.name, port.info, port.detailsPage);
-    });
+      //  marker.on("click", function () {
+      //   showPopup(port.name, port.info, port.detailsPage);
+    // });
 });
 }
 
@@ -76,6 +74,7 @@ L.geoJSON(portsData, {
 
       // Fly to the clicked port's location
       if (coordinates) {
+        const adjustedLat = coordinates[1] - 0.3
         map.flyTo([coordinates[1], coordinates[0]], 10, { duration: 1.5 });
       }
 
@@ -179,6 +178,7 @@ document.getElementById("searchBox").addEventListener("input", function (e) {
         listItem.textContent = result.name;
 
         listItem.addEventListener("click", function () {
+        
           map.flyTo([result.coordinates[1], result.coordinates[0]], result.isGroup ? 10 : 12, { duration: 1.5 });
 
           if (result.isGroup) {
@@ -232,3 +232,12 @@ document.getElementById("searchBox").addEventListener("input", function (e) {
     }
   }, 100);
 });
+// Function to close popup and reset map view
+function closePopup() {
+  const popup = document.getElementById("popup");
+  popup.style.display = "none";
+  clearHighlightedMarkers();
+  
+  // Reset map view to default coordinates
+  map.setView([22.2587, 71.1924], 7);
+}
